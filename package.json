@@ -1,0 +1,14 @@
+{
+  "name": "human-in-the-project",
+  "version": "1.0.0",
+  "private": true,
+  "description": "人間が推進の中心となるプロジェクト管理ハーネス（Claude Code 向け APM パッケージ）",
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test 'tests/**/*.test.mjs'"
+  }
+}

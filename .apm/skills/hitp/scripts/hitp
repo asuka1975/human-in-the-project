@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# hitp の起動スクリプト。PATH の通った場所に一度だけリンクを張れば、リーダーは `! hitp approve PRP-0004` と打てる。
+#   ln -s "$PWD/.claude/skills/hitp/scripts/hitp" ~/.local/bin/hitp
+# 現在のディレクトリから祖先へ .claude/skills/hitp/scripts/hitp.mjs を探して実行する（プロジェクトごとに入っている版を使う）。
+d=$PWD
+while :; do
+  h=$d/.claude/skills/hitp/scripts/hitp.mjs
+  [ -f "$h" ] && exec node "$h" "$@"
+  [ "$d" = / ] && break
+  d=$(dirname "$d")
+done
+echo "hitp: .claude/skills/hitp/scripts/hitp.mjs が見つかりません（apm install 済みのプロジェクトの中で実行してください）" >&2
+exit 2

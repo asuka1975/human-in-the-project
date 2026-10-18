@@ -1,0 +1,14 @@
+{
+  "session_id": "00000000-0000-0000-0000-000000000000",
+  "transcript_path": "/home/user/.claude/projects/example/00000000-0000-0000-0000-000000000000.jsonl",
+  "cwd": "/workspace/project",
+  "prompt_id": "00000000-0000-0000-0000-000000000001",
+  "permission_mode": "auto",
+  "hook_event_name": "PreToolUse",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "echo agent-probe",
+    "description": "Run a probe command to confirm the hook fires"
+  },
+  "tool_use_id": "toolu_00000000000000000000000000"
+}

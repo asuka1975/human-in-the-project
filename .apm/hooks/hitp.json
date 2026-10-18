@@ -1,0 +1,36 @@
+{
+  "PreToolUse": [
+    {
+      "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "d=${CLAUDE_PROJECT_DIR:-$PWD}; h=; while :; do [ -f \"$d/.claude/skills/hitp/scripts/hook.mjs\" ] && { h=$d/.claude/skills/hitp/scripts/hook.mjs; break; }; p=$(dirname \"$d\"); [ \"$p\" = \"$d\" ] && break; d=$p; done; [ -z \"$h\" ] && [ -f \"$HOME/.claude/skills/hitp/scripts/hook.mjs\" ] && h=$HOME/.claude/skills/hitp/scripts/hook.mjs; [ -z \"$h\" ] && { echo 'hitp の hook（.claude/skills/hitp/scripts/hook.mjs）が見つからないので、Edit・Write・Bash を止めています（INV-1）。記録を守る仕組みが無いまま動かないためです。リーダーに伝えてください（hitp を入れ直すか、hitp を外したなら .claude/settings.json から hitp の hook を消します）。' >&2; exit 2; }; node \"$h\" pre-guard && exit 0; echo \"hitp の hook（$h）が正しく動かなかったので、止めました（INV-1）。記録を守る仕組みが壊れたまま動かないためです。リーダーに伝えてください（hitp を入れ直すと直ります）。\" >&2; exit 2",
+          "timeout": 10
+        }
+      ]
+    },
+    {
+      "matcher": "Bash",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "d=${CLAUDE_PROJECT_DIR:-$PWD}; h=; while :; do [ -f \"$d/.claude/skills/hitp/scripts/hook.mjs\" ] && { h=$d/.claude/skills/hitp/scripts/hook.mjs; break; }; p=$(dirname \"$d\"); [ \"$p\" = \"$d\" ] && break; d=$p; done; [ -z \"$h\" ] && [ -f \"$HOME/.claude/skills/hitp/scripts/hook.mjs\" ] && h=$HOME/.claude/skills/hitp/scripts/hook.mjs; [ -z \"$h\" ] && { echo 'hitp の hook（.claude/skills/hitp/scripts/hook.mjs）が見つからないので、Edit・Write・Bash を止めています（INV-1）。記録を守る仕組みが無いまま動かないためです。リーダーに伝えてください（hitp を入れ直すか、hitp を外したなら .claude/settings.json から hitp の hook を消します）。' >&2; exit 2; }; node \"$h\" pre-guard && exit 0; echo \"hitp の hook（$h）が正しく動かなかったので、止めました（INV-1）。記録を守る仕組みが壊れたまま動かないためです。リーダーに伝えてください（hitp を入れ直すと直ります）。\" >&2; exit 2",
+          "timeout": 10
+        }
+      ]
+    }
+  ],
+  "PostToolUse": [
+    {
+      "matcher": "Edit|Write|MultiEdit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "d=${CLAUDE_PROJECT_DIR:-$PWD}; h=; while :; do [ -f \"$d/.claude/skills/hitp/scripts/hook.mjs\" ] && { h=$d/.claude/skills/hitp/scripts/hook.mjs; break; }; p=$(dirname \"$d\"); [ \"$p\" = \"$d\" ] && break; d=$p; done; [ -z \"$h\" ] && [ -f \"$HOME/.claude/skills/hitp/scripts/hook.mjs\" ] && h=$HOME/.claude/skills/hitp/scripts/hook.mjs; [ -z \"$h\" ] && exit 0; exec node \"$h\" post-edit",
+          "timeout": 10
+        }
+      ]
+    }
+  ]
+}
